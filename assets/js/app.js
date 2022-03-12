@@ -6,14 +6,17 @@ import { chooseRule, home } from "./view.js";
 const heading = document.querySelector('.header .heading');
 const content = document.querySelector('.content');
 
-heading.innerHTML = home.heading;
-// content.innerHTML = home.content;
-// get btn choose
-const btnChoose = document.querySelector('.content #btn-choose');
-console.log(btnChoose);
+function viewHome() {
+    heading.innerHTML = home.heading;
+    content.innerHTML = home.content;
+    document.querySelector('.content #btn-choose').addEventListener('click', viewChoose);
+}
 
-btnChoose.addEventListener('click', () => {
+function viewChoose() {
     heading.innerHTML = chooseRule.heading;
     content.innerHTML = chooseRule.content;
-})
+    document.querySelector('#btnBack').addEventListener('click', viewHome);
+}
+
+viewHome();
 
