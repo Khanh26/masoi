@@ -1,0 +1,138 @@
+body {
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.wrapper {
+    background-color: #000000d0;
+    color: white;
+    padding: 2em;
+    margin: 1rem;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.header .heading {
+    padding: 10px 0;
+    width: max-content;
+    margin: auto;
+}
+/* home */
+.content .btn-menu{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.content .btn-menu:hover, .footer-content .btnAction:hover {
+    opacity: 0.4;
+}
+
+/* choose */
+.header-list .heading-content {
+    border-bottom: 1px solid;
+    padding: 8px 0;
+}
+
+.footer-content {
+    display: flex;
+    margin-top: 33px;
+}
+
+.footer-content .btnAction {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 6px 10px;
+    width: 50%;
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+
+/* content */
+
+.body-list {
+    max-height: 203px;
+    overflow: scroll;
+    border-bottom: 1px solid white;
+}
+
+.item-rule {
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 9px;
+}
+
+.icon-rule {
+    width: 10%;
+    padding-left: 10px;
+    position: relative;
+}
+
+.icon-rule::after {
+    content:'';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    right: 12px;
+    top: 50%;
+    background-color: white;
+    transform: translateY(-50%);
+}
+
+.name-rule {
+    width: 30%;
+}
+
+.count-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.count-rule .inputCount {
+    width: 10%;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+.count-rule .btn-count {
+    background-color: #1f1515d0;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-rule {
+    width: 10%;
+    text-align: end;
+}
+
+.btn-rule .btn-remove {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-rule .btn-remove:hover,  .count-rule .btn-count:hover{
+    opacity: 0.4;
+}
