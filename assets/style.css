@@ -88,7 +88,7 @@ body {
     position: absolute;
     width: 1px;
     height: 100%;
-    right: 3%;
+    right: 0px;
     top: 50%;
     background-color: white;
     transform: translateY(-50%);
@@ -96,6 +96,7 @@ body {
 
 .name-rule {
     width: 30%;
+    padding-left: 4px;
 }
 
 .count-rule {
