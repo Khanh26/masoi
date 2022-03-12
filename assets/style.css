@@ -88,7 +88,7 @@ body {
     position: absolute;
     width: 1px;
     height: 100%;
-    right: 12px;
+    right: 3%;
     top: 50%;
     background-color: white;
     transform: translateY(-50%);
