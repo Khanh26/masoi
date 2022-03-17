@@ -97,6 +97,7 @@ body {
 .name-rule {
     width: 30%;
     padding-left: 8px;
+    text-transform: capitalize;
 }
 
 .count-rule {
@@ -121,19 +122,47 @@ body {
     cursor: pointer;
 }
 
-.btn-rule {
+.block-rule {
     width: 10%;
     text-align: end;
 }
 
-.btn-rule .btn-remove {
+.block-rule .btn-rule {
     background-color: transparent;
     border: none;
     color: white;
-    padding: 10px;
     cursor: pointer;
+    padding: 10px;
 }
 
-.btn-rule .btn-remove:hover,  .count-rule .btn-count:hover{
+.btn-rule .btn-rule:hover, .count-rule .btn-count:hover{
     opacity: 0.4;
+}
+
+/* review */
+
+.side .heading-side {
+    text-transform: capitalize;
+}
+
+.side .item-side {
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    padding: 6px 4px;
+    margin: 10px;
+}
+
+.side .icon-rule {
+    width: 10%;
+}
+
+.side .name-rule {
+    width: 20%;
+}
+
+
+.side .number-rule {
+    width: 70%;
+    text-align: end;
 }

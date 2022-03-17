@@ -1,131 +1,107 @@
-export const chooseRule = {
+const selectRule = {
     heading: 'Chọn chức năng',
-    content: `
-    <div class="list">
-        <div class="header-list">
-            <h3 class="heading-content">Chức năng đã chọn (0)</h3>
-        </div>
-        <div class="body-list">
+    content: function(characters) {
+        let htmlCharacters = characters.map( (character) => {
+            return `
             <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
+                <div class="icon-rule">${character.icon}</div>
+                <div class="name-rule">${character.nameVI}</div>
                 <div class="count-rule">
-                    <div class="down-count"><button class="btn-down btn-count"><i class="fa-solid fa-angle-left"></i></button></div>
-                    <input type="text" class="inputCount" min="1" value="0" disabled>
-                    <div class="up-count"><button class="btn-up btn-count"><i class="fa-solid fa-angle-right"></i></button></div>
+                    ${character.nameUS == 'wolf' || character.nameUS == 'village' ? `
+                        <button class="btn-count"><i class="fa-solid fa-chevron-left"></i></button>
+                        <input type='text' class="inputCount" min="0" value="1" name="${character.nameUS}"/>
+                        <button class="btn-count"><i class="fa-solid fa-chevron-right"></i></button>
+                    ` : ''}
                 </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-xmark"></i></button></div>
+                <div class="block-rule"><button class="btn-rule btn-selected"><i class="fa-solid fa-plus"></i></button></div>
             </div>
+            `
+        }).join('');
 
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    <div class="down-count"><button class="btn-down btn-count"><i class="fa-solid fa-angle-left"></i></button></div>
-                    <input type="text" class="inputCount" min="1" value="0" disabled>
-                    <div class="up-count"><button class="btn-up btn-count"><i class="fa-solid fa-angle-right"></i></button></div>
+
+        return `
+            <div class="list">
+                <div class="header-list">
+                    <h3 class="heading-content">Chức năng đã chọn (0)</h3>
                 </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-xmark"></i></button></div>
-            </div>
-
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    <div class="down-count"><button class="btn-down btn-count"><i class="fa-solid fa-angle-left"></i></button></div>
-                    <input type="text" class="inputCount" min="1" value="0" disabled>
-                    <div class="up-count"><button class="btn-up btn-count"><i class="fa-solid fa-angle-right"></i></button></div>
-                </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-xmark"></i></button></div>
-            </div>
-
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    <div class="down-count"><button class="btn-down btn-count"><i class="fa-solid fa-angle-left"></i></button></div>
-                    <input type="text" class="inputCount" min="1" value="0" disabled>
-                    <div class="up-count"><button class="btn-up btn-count"><i class="fa-solid fa-angle-right"></i></button></div>
-                </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-xmark"></i></button></div>
-            </div>
-
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    <div class="down-count"><button class="btn-down btn-count"><i class="fa-solid fa-angle-left"></i></button></div>
-                    <input type="text" class="inputCount" min="1" value="0" disabled>
-                    <div class="up-count"><button class="btn-up btn-count"><i class="fa-solid fa-angle-right"></i></button></div>
-                </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-xmark"></i></button></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="list">
-        <div class="header-list">
-            <h3 class="heading-content">Các chức năng</h3>
-        </div>
-        <div class="body-list">
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
+                <div class="body-list" id="list-selected">
                     
                 </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-plus"></i></button></div>
             </div>
 
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    
+            <div class="list">
+                <div class="header-list">
+                    <h3 class="heading-content">các chức năng</h3>
                 </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-plus"></i></button></div>
-            </div>
-
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    
+                <div class="body-list" id="list-select">
+                    ${htmlCharacters}
                 </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-plus"></i></button></div>
             </div>
 
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    
-                </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-plus"></i></button></div>
+            <div class="footer-content">
+                <button class="btnAction" id="btnBack"><i class="fa-solid fa-angles-left"></i> Trở về</button>
+                <button class="btnAction" id="btnSubmit" >Xác nhận</button>
             </div>
-
-            <div class="item-rule">
-                <div class="icon-rule"><i class="fa-solid fa-dog"></i></div>
-                <div class="name-rule">Sói</div>
-                <div class="count-rule">
-                    
-                </div>
-                <div class="btn-rule"><button class="btn-remove"><i class="fa-solid fa-plus"></i></button></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-content">
-        <button class="btnAction" id="btnBack"><i class="fa-solid fa-angles-left"></i> Trở về</button>
-        <button class="btnAction" id="btnSubmit" >Xác nhận</button>
-    </div>
-    `,
+        `
+    },
 };
 
-export const home = {
+const home = {
     heading: 'Ma Sói',
     content: `
         <button class="btn-menu" id="btn-choose">Chọn Chức năng</button>
         <button class="btn-menu" id="btn-about">Giới thiệu</button>
     `,
 }
+
+const reviewSelected = {
+    heading: 'Chuẩn Bị',
+
+    blockItemSide: function(side,playGame) {
+        return playGame.filterBySide(side).map( (character) => {
+            return `
+                <div class="item-side">
+                    <div class="icon-rule">${character.rule.icon}</div>
+                    <div class="name-rule">${character.rule.nameVI}</div>
+                    <div class="number-rule">SL: ${playGame.countCharacter(character.rule.nameVI)}</div>
+                </div>
+            `
+        }).join('');
+    },
+
+    content: function(playGame) {
+        
+        return `
+            <div class="side">
+            <div class="header-side">
+                <h3 class="heading-side">phe người:</h3>
+            </div>
+            <div class="body-side">
+                ${this.blockItemSide('human',playGame)}
+            </div>
+        </div>
+
+        <div class="side">
+            <div class="header-side">
+                <h3 class="heading-side">phe sói:</h3>
+            </div>
+            <div class="body-side">
+                ${this.blockItemSide('wolf',playGame)}
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <button class="btnAction" id="btnBack"><i class="fa-solid fa-angles-left"></i> Trở về</button>
+            <button class="btnAction" id="btnStart" >Bắt đầu</button>
+        </div>
+        `
+    },
+}
+
+const view = {
+    home: home,
+    selectRule: selectRule,
+    reviewSelected: reviewSelected,
+}
+
+export default view
