@@ -9,8 +9,29 @@ const content = document.querySelector('.content');
 const playGame = {
     rules: [],
 
+    isSameObject: function(obj,array) {
+        return array.some( (element) => {
+            return JSON.stringify(element) == JSON.stringify(obj);
+        })
+    },    
     filterBySide: function(side) {
-        // lọc duy nhất object....
+        let array = [];
+        for(let i = 0; i < this.rules.length; i++) {
+            if(this.rules[i].rule.side == side && !this.isSameObject(this.rules[i], array)) {
+                array.push(this.rules[i]);
+            }
+        }
+        return array;
+    },
+
+    getCurrentRules: function() {
+        let array = [];
+        for(let i = 0; i < this.rules.length; i++) {
+            if(this.isSameObject(this.rules[i], array) == undefined) {
+                array.push(this.rules[i].rule);
+            }
+        }
+        return array;
     },
 
     countCharacter: function(character) {
@@ -51,6 +72,7 @@ function addEventBtn(btnS, icon, newAction, oldAction, block) {
     })
 }
 function initGame() {
+    playGame.rules.length = 0;
     let listRule = document.querySelectorAll('#list-selected .item-rule');
     listRule.forEach( (rule) => {
         if(rule.querySelector('.inputCount')) {
@@ -71,61 +93,44 @@ function initGame() {
     })
 }
 
-function viewReview() {
-    initGame();
-    render(view.reviewSelected.heading,view.reviewSelected.content(playGame));
-    document.querySelector('#btnBack').addEventListener('click', viewSelect);
-}
-
 function render(htmlHeading, htmlContent) {
     heading.innerHTML = htmlHeading;
     content.innerHTML = htmlContent;
 }
 
+function viewReview() {
+    initGame();
+    render(view.reviewSelected.heading,view.reviewSelected.content(playGame));
+    document.querySelector('#btnBack').addEventListener('click', viewSelect);
+}
+    
 function viewHome() {
     render(view.home.heading,view.home.content);
     document.querySelector('.content #btn-choose').addEventListener('click', viewSelect);
 }
 
 function viewSelect() {
-    render(view.selectRule.heading,view.selectRule.content(characters.rules));
+
+    
+
+    render(view.selectRule.heading,view.selectRule.content(rest ,playGame.getCurrentRules));
     addEventBtn('.btn-selected', '<i class="fa-solid fa-xmark"></i>', 'btn-remove', 'btn-selected', '#list-selected');
+
+    document.querySelectorAll('.btnUp').forEach( (element) => {
+        element.addEventListener('click', (e) => {
+            ++e.target.parentElement.parentElement.querySelector('.inputCount').value
+        })
+    } )
+
+    document.querySelectorAll('.btnDown').forEach( (element) => {
+        element.addEventListener('click', (e) => {
+            if(e.target.parentElement.parentElement.querySelector('.inputCount').value > 1)
+                --e.target.parentElement.parentElement.querySelector('.inputCount').value
+        })
+    } )
     document.querySelector('#btnBack').addEventListener('click', viewHome);
     document.querySelector('#btnSubmit').addEventListener('click', viewReview);
+
 }
-
-const a =  [
-    {
-        name: 'khanh',
-        age: '19',
-        getAge: {
-            aaaa: 'aa',
-        }
-    },
-    {
-        name: 'khanh',
-        age: '19',
-        getAge: {
-            aaaa: 'bb',
-        }
-    },
-    {
-        name: 'khanh',
-        age: '19',
-        getAge: {
-            aaaa: 'cc',
-        }
-    },
-]
-
-const b = {
-    name: 'khanh',
-    age: '19',
-    getAge: {
-        aaaa: 'dd',
-    }
-}
-
-console.log(JSON.stringify(a).indexOf(JSON.stringify(b)));
 
 viewHome();

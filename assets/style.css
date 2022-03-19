@@ -158,11 +158,11 @@ body {
 }
 
 .side .name-rule {
-    width: 20%;
+    width: 40%;
 }
 
 
 .side .number-rule {
-    width: 70%;
+    width: 50%;
     text-align: end;
 }

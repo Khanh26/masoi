@@ -1,23 +1,26 @@
 const selectRule = {
     heading: 'Chọn chức năng',
-    content: function(characters) {
-        let htmlCharacters = characters.map( (character) => {
+
+    getHtmlSelect: function(character) {
+        return characters.map( (character) => {
             return `
             <div class="item-rule">
                 <div class="icon-rule">${character.icon}</div>
                 <div class="name-rule">${character.nameVI}</div>
                 <div class="count-rule">
                     ${character.nameUS == 'wolf' || character.nameUS == 'village' ? `
-                        <button class="btn-count"><i class="fa-solid fa-chevron-left"></i></button>
-                        <input type='text' class="inputCount" min="0" value="1" name="${character.nameUS}"/>
-                        <button class="btn-count"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="btn-count btnDown"><i class="fa-solid fa-chevron-left"></i></button>
+                        <input type='text' class="inputCount" value="1" name="${character.nameUS}"/>
+                        <button class="btn-count btnUp"><i class="fa-solid fa-chevron-right"></i></button>
                     ` : ''}
                 </div>
                 <div class="block-rule"><button class="btn-rule btn-selected"><i class="fa-solid fa-plus"></i></button></div>
             </div>
             `
         }).join('');
+    },
 
+    content: function(characters, chaSelected) {
 
         return `
             <div class="list">
@@ -25,7 +28,7 @@ const selectRule = {
                     <h3 class="heading-content">Chức năng đã chọn (0)</h3>
                 </div>
                 <div class="body-list" id="list-selected">
-                    
+                    ${this.getHtmlSelect(chaSelected)}
                 </div>
             </div>
 
@@ -34,7 +37,7 @@ const selectRule = {
                     <h3 class="heading-content">các chức năng</h3>
                 </div>
                 <div class="body-list" id="list-select">
-                    ${htmlCharacters}
+                    ${this.getHtmlSelect(characters)}
                 </div>
             </div>
 
